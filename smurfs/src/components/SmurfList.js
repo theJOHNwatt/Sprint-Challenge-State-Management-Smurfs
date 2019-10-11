@@ -10,7 +10,7 @@ const SmurfList = props => {
     }, []);
 
     if (props.isFetching) {
-        return <h2>Finding Surfs...</h2>;
+        return <h2>Finding Smurfs...</h2>;
     }
 
     return (
