@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {fetchSmurfs} from '../actions';
+import {fetchSmurfs, postSmurf} from '../actions';
 import SmurfForm from './SmurfForm';
 import SmurfCard from './SmurfCard';
 
@@ -15,8 +15,9 @@ const SmurfList = props => {
 
     return (
         <div>
+            <SmurfForm />
             {props.error && <p>{props.error}</p>}
-            {props.smurfsApi.map (item => (
+            {props.smurfs.map (item => (
                 <SmurfCard
                 key={item.id}
                 name={item.name}
@@ -25,16 +26,18 @@ const SmurfList = props => {
                 />
             ))}
         </div>
+        
     )
 }
 
 
 const mapStatetoProps = state => {
     return {
-        smurfsApi: state.smurfsApi,
+        smurfs: state.smurfs,
         isFetching: state.isFetching,
-        error: state.error
+        error: state.error,
+        
     };
 };
 
-export default connect(mapStatetoProps, {fetchSmurfs})(SmurfList);
+export default connect(mapStatetoProps, {fetchSmurfs, postSmurf})(SmurfList);

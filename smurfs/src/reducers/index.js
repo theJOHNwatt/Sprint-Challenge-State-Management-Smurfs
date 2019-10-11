@@ -1,14 +1,16 @@
-import { START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE} from '../actions';
+import { START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE ,ADD_SMURF } from '../actions';
 
 
-const initialState = {
-    smurfsApi: [],
+
+export const initialState = {
+    smurfs: [],
     isFetching: false,
-    error: ''
+    error: '',
+    
 }
 
-const reducer = (state = initialState, action) => {
-    console.log(state);
+export const reducer = (state = initialState, action) => {
+    console.log('smurfs api',state.smurfs)
     switch(action.type) {
         case START_FETCHING:
             return {
@@ -21,14 +23,27 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
                 error: '',
-                smurfsApi: action.payload
+                smurfs: action.payload
             };
+        
         case FETCH_FAILURE:
             return {
                 ...state,
                 isFetching: false,
-                error: action.payload,
+                error: 'Error Collecting Data',
             };
+        case ADD_SMURF: 
+                const newItem = {
+                    ...action.payload,
+                    id: Date.now()
+                    
+                }
+                
+            return{
+                ...state,
+                smurfs: [...state.smurfs, newItem]
+                
+            }
         default:
             return state;
     }

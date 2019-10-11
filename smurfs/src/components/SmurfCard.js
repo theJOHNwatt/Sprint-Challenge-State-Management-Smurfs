@@ -4,8 +4,8 @@ const SmurfCard = props => {
     return (
     <div className='smurf-card'>
         <h3>{props.name}</h3>
-        <p>{props.age}</p>
-        <p>{props.height}</p>
+        <p>Age: {props.age}</p>
+        <p>Height: {props.height}</p>
     </div>
     )
 };
